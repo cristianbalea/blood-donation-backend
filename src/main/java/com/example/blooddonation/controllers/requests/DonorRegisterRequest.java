@@ -13,4 +13,5 @@ public class DonorRegisterRequest {
     private String lastName;
     private String area;
     private String bloodType;
+    private String phoneNumber;
 }

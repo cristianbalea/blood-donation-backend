@@ -4,7 +4,12 @@ import com.example.blooddonation.domain.dtos.*;
 import com.example.blooddonation.domain.repositories.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
+
+import java.util.Properties;
 
 @Component
 public class DbInitializer {
@@ -40,10 +45,10 @@ public class DbInitializer {
         Doctor doctor2 = new Doctor("2740415015749", "doinitaoancea@donate.ro", "mypass", "Oancea", "Doinita", location1);
         userRepository.save(doctor2);
 
-        Donor donor1 = new Donor("5000730307008", "Joe", "Black", "joeblack@donate.ro", "mypass", "Cluj-Napoca", "AB4");
+        Donor donor1 = new Donor("5000730307008", "Joe", "Black", "joeblack@donate.ro", "mypass", "Cluj-Napoca", "AB4", "0751689006");
         userRepository.save(donor1);
 
-        Donor donor2 = new Donor("2900717167901", "Grace", "Stewart", "grace@donate.ro", "mypass", "Turda", "A2");
+        Donor donor2 = new Donor("2900717167901", "Grace", "Stewart", "grace@donate.ro", "mypass", "Turda", "A2", "0751689006");
         userRepository.save(donor2);
     }
 }

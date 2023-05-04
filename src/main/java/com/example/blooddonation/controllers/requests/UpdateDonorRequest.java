@@ -17,4 +17,5 @@ public class UpdateDonorRequest {
     private String password;
     private String area;
     private String bloodType;
+    private String phoneNumber;
 }

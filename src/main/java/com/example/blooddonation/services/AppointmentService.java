@@ -27,12 +27,14 @@ public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
     private final LocationRepository locationRepository;
     private final DonorRepository donorRepository;
+    private final MailSenderService mailSenderService;
 
     @Autowired
-    public AppointmentService(AppointmentRepository appointmentRepository, LocationRepository locationRepository, DonorRepository donorRepository) {
+    public AppointmentService(AppointmentRepository appointmentRepository, LocationRepository locationRepository, DonorRepository donorRepository, MailSenderService mailSenderService) {
         this.appointmentRepository = appointmentRepository;
         this.locationRepository = locationRepository;
         this.donorRepository = donorRepository;
+        this.mailSenderService = mailSenderService;
     }
 
     public AppointmentResponse addNewAppointment(AddAppointmentRequest addAppointmentRequest) {
@@ -62,6 +64,9 @@ public class AppointmentService {
         appointment.setLocation(location.get());
 
         appointmentRepository.save(appointment);
+
+        mailSenderService.sendConfirmation(appointment);
+
         return new AppointmentResponse(appointment);
     }
 

@@ -19,6 +19,7 @@ public class DonorMapper {
         donor.setRole(Role.DONOR);
         donor.setArea(donorRegisterRequest.getArea());
         donor.setBloodType(donorRegisterRequest.getBloodType());
+        donor.setPhoneNumber(donorRegisterRequest.getPhoneNumber());
         return donor;
     }
     public Donor toDonor(UpdateDonorRequest updateDonorRequest) {
@@ -32,6 +33,7 @@ public class DonorMapper {
         donor.setRole(Role.DONOR);
         donor.setArea(updateDonorRequest.getArea());
         donor.setBloodType(updateDonorRequest.getBloodType());
+        donor.setPhoneNumber(updateDonorRequest.getPhoneNumber());
         return donor;
     }
 
