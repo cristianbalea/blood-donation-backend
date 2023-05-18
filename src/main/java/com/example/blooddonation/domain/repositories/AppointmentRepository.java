@@ -33,6 +33,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
 
     List<Appointment> getAppointmentsByLocation_Id(UUID uuid);
 
+    List<Appointment> getAppointmentsByDate(Date date);
+
     List<Appointment> getAppointmentsByLocation_IdAndDate(UUID uuid, Date date);
 
     @Transactional

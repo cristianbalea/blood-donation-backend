@@ -13,8 +13,14 @@ public class Donor extends User {
     private String area;
     @Column
     private String bloodType;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean smsRemind = false;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean mailRemind = false;
+    @Column
+    private String phoneNumber;
 
-    public Donor(String cnp, String firstName, String lastName, String email, String password, String area, String bloodType) {
+    public Donor(String cnp, String firstName, String lastName, String email, String password, String area, String bloodType, String phoneNumber) {
         super(cnp, firstName, lastName, email, password, Role.DONOR);
         this.area = area;
         this.bloodType = bloodType;

@@ -1,6 +1,7 @@
 package com.example.blooddonation.services;
 
 import com.example.blooddonation.controllers.requests.DonorRegisterRequest;
+import com.example.blooddonation.controllers.requests.SetReminderRequest;
 import com.example.blooddonation.controllers.requests.UpdateDonorRequest;
 import com.example.blooddonation.controllers.responses.DonorResponse;
 import com.example.blooddonation.domain.dtos.Donor;
@@ -52,7 +53,7 @@ public class DonorService {
         return new DonorResponse(donor);
     }
 
-    public DonorResponse updateDoctor(UpdateDonorRequest updateDonorRequest) {
+    public DonorResponse updateDonor(UpdateDonorRequest updateDonorRequest) {
         Optional<User> user = userRepository.findById(updateDonorRequest.getId());
 
         if(user.isEmpty()) {
@@ -63,5 +64,37 @@ public class DonorService {
         userRepository.save(donor);
 
         return new DonorResponse(donor);
+    }
+
+    public DonorResponse setSmsReminder(SetReminderRequest setReminderRequest) {
+        Optional<Donor> donor = donorRepository.findById(setReminderRequest.getId());
+
+        if(donor.isEmpty()) {
+            throw new NotFoundException("Donor not found!");
+        }
+
+        donorRepository.setSmsReminder(setReminderRequest.getId(), setReminderRequest.getRemind());
+
+        Optional<Donor> donorChanged = donorRepository.findById(setReminderRequest.getId());
+        if(donorChanged.isEmpty()) {
+            throw new NotFoundException("Donor not found!");
+        }
+        return new DonorResponse(donorChanged.get());
+    }
+
+    public DonorResponse setMailReminder(SetReminderRequest setReminderRequest) {
+        Optional<Donor> donor = donorRepository.findById(setReminderRequest.getId());
+
+        if(donor.isEmpty()) {
+            throw new NotFoundException("Donor not found!");
+        }
+
+        donorRepository.setMailReminder(setReminderRequest.getId(), setReminderRequest.getRemind());
+
+        Optional<Donor> donorChanged = donorRepository.findById(setReminderRequest.getId());
+        if(donorChanged.isEmpty()) {
+            throw new NotFoundException("Donor not found!");
+        }
+        return new DonorResponse(donorChanged.get());
     }
 }

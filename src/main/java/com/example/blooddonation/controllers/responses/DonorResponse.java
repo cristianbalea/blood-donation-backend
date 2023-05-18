@@ -17,6 +17,9 @@ public class DonorResponse extends BaseResponse {
     private String lastName;
     private String area;
     private String bloodType;
+    private String phoneNumber;
+    private Boolean smsRemind;
+    private Boolean mailRemind;
 
     public DonorResponse(Donor donor) {
         this.id = donor.getId();
@@ -27,5 +30,8 @@ public class DonorResponse extends BaseResponse {
         this.lastName = donor.getLastName();
         this.area = donor.getArea();
         this.bloodType = donor.getBloodType();
+        this.phoneNumber = donor.getPhoneNumber();
+        this.mailRemind = donor.getMailRemind();
+        this.smsRemind = donor.getSmsRemind();
     }
 }
